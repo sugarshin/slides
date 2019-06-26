@@ -1,0 +1,82 @@
+version: 2.1
+
+references:
+  workspace_root: &workspace_root
+    ~/repo
+  defaults: &defaults
+    working_directory: *workspace_root
+
+orbs:
+  slack: circleci/slack@3.2.0
+
+executors:
+  nodejs_browsers:
+    <<: *defaults
+    docker:
+      - image: sugarshin/circleci-node-browsers-fonts:12.4.0
+  buildpack_deps:
+    <<: *defaults
+    docker:
+      - image: circleci/buildpack-deps
+
+jobs:
+  build:
+    executor:
+      name: nodejs_browsers
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Cache - Dependency Modules
+          keys:
+            - v1-npm-deps-{{ checksum "package-lock.json" }}
+            - v1-npm-deps-
+      - run: npm ci --production
+      - save_cache:
+          name: Save Cache - Dependency Modules
+          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+          paths:
+            - ~/.npm
+      - run: /bin/bash scripts/build.bash
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - dist
+      - store_artifacts:
+          path: dist
+          destination: dist
+      - store_artifacts:
+          path: pdf
+          destination: pdf
+  deploy:
+    executor:
+      name: buildpack_deps
+    steps:
+      - checkout
+      - attach_workspace:
+          at: *workspace_root
+      - run:
+          command: |
+            git config --global user.name 'CircleCI'
+            git config --global user.email 's+circleci@sugarshin.net'
+      - run: /bin/bash .circleci/deploy.bash
+  slack_notify:
+    machine: true
+    steps:
+      - slack/notify:
+          color: '#42e2f4'
+          message: "slides.sugarshin.net has been updated! <https://slides.sugarshin.net>"
+          webhook: ${SLACK_WEBHOOK_URL}
+
+workflows:
+  build_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      - slack_notify:
+          requires:
+            - deploy
