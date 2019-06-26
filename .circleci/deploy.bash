@@ -2,7 +2,7 @@
 
 set -eu
 
-readonly git_url=git@github.com:sugarshin/slides.git
+readonly git_url=git@github.com:${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
 readonly branch=gh-pages
 readonly commit=$(git rev-parse --short HEAD)
 readonly dist=dist
