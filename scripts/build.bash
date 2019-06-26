@@ -12,7 +12,7 @@ readonly images_dir=images
 readonly cname=slides.sugarshin.net
 
 rm -rf ${dist} ${pdf_dist}
-mkdir -p ${pdf_dist}
+mkdir -p ${dist} ${pdf_dist}
 
 for p in ${publishes[@]}; do
   target=$(basename $(dirname "$p"))
