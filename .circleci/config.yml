@@ -44,6 +44,9 @@ jobs:
       - checkout
       - attach_workspace:
           at: *workspace_root
+      - add_ssh_keys:
+          fingerprints:
+            - a7:49:7e:a0:5e:9d:5a:e5:a9:da:5d:5e:a3:58:87:8f
       - run:
           command: |
             git config --global user.name 'CircleCI'
