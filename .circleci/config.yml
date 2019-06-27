@@ -27,7 +27,7 @@ jobs:
       - checkout
       - npm/install:
           production: true
-      - run: /bin/bash scripts/build.bash
+      - run: /bin/bash scripts/build.sh
       - persist_to_workspace:
           root: *workspace_root
           paths:
@@ -51,7 +51,7 @@ jobs:
           command: |
             git config --global user.name 'CircleCI'
             git config --global user.email 's+circleci@sugarshin.net'
-      - run: /bin/bash .circleci/deploy.bash
+      - run: /bin/bash .circleci/deploy.sh
   slack_notify:
     machine: true
     steps:
