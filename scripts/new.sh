@@ -42,6 +42,10 @@ image: https://slides.sugarshin.net/${pathname}/index.png
 ---
 
 TBD
+
+---
+
+<img src="/${pathname}/images/sample.png">
 EOF
 
 echo -e "\n[INFO] Completed successfully\n"
