@@ -9,16 +9,13 @@ references:
 orbs:
   slack: circleci/slack@3.2.0
   npm: sugarshin/npm@0.1.3
+  gh-pages: sugarshin/gh-pages@0.0.3
 
 executors:
   nodejs_browsers:
     <<: *defaults
     docker:
       - image: sugarshin/circleci-node-browsers-fonts:12.4.0
-  buildpack_deps:
-    <<: *defaults
-    docker:
-      - image: circleci/buildpack-deps
 
 jobs:
   build:
@@ -38,20 +35,6 @@ jobs:
       - store_artifacts:
           path: pdf
           destination: pdf
-  deploy:
-    executor: buildpack_deps
-    steps:
-      - checkout
-      - attach_workspace:
-          at: *workspace_root
-      - add_ssh_keys:
-          fingerprints:
-            - a7:49:7e:a0:5e:9d:5a:e5:a9:da:5d:5e:a3:58:87:8f
-      - run:
-          command: |
-            git config --global user.name 'CircleCI'
-            git config --global user.email 's+circleci@sugarshin.net'
-      - run: /bin/bash .circleci/deploy.sh
   slack_notify:
     machine: true
     steps:
@@ -67,7 +50,14 @@ workflows:
           filters:
             branches:
               ignore: gh-pages
-      - deploy:
+      - gh-pages/deploy:
+          name: deploy
+          checkout: false
+          attach-workspace: true
+          workspace-root: *workspace_root
+          git-user: CircleCI
+          git-email: s+circleci@sugarshin.net
+          ssh-fingerprints: a7:49:7e:a0:5e:9d:5a:e5:a9:da:5d:5e:a3:58:87:8f
           requires:
             - build
           filters:
