@@ -28,6 +28,6 @@ Only slides in the directory where the `publish` file is located are deployed.
 
 Copyright (C) 2019 [Shingo Sato](https://sugarshin.net).
 
-All rights reserved with all articles and pictures.
+All rights reserved with all slides and pictures.
 
 Everything else in the repository is [MIT](https://sugarshin.mit-license.org/) licensed.
