@@ -9,7 +9,7 @@ references:
 orbs:
   slack: circleci/slack@3.2.0
   npm: sugarshin/npm@0.1.3
-  gh-pages: sugarshin/gh-pages@0.0.3
+  gh-pages: sugarshin/gh-pages@0.0.4
 
 executors:
   nodejs_browsers:
