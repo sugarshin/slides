@@ -52,7 +52,6 @@ workflows:
               ignore: gh-pages
       - gh-pages/deploy:
           name: deploy
-          checkout: false
           attach-workspace: true
           workspace-root: *workspace_root
           git-user: CircleCI
