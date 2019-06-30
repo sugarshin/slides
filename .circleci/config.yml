@@ -16,6 +16,10 @@ executors:
     <<: *defaults
     docker:
       - image: sugarshin/circleci-node-browsers-fonts:12.4.0
+  buildpack_deps:
+    <<: *defaults
+    docker:
+      - image: circleci/buildpack-deps:latest
 
 jobs:
   build:
@@ -52,6 +56,7 @@ workflows:
               ignore: gh-pages
       - gh-pages/deploy:
           name: deploy
+          executor: buildpack_deps
           attach-workspace: true
           workspace-root: *workspace_root
           git-user: CircleCI
