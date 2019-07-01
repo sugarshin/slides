@@ -24,7 +24,8 @@ for p in ${publishes[@]}; do
 
   echo "Copy ${src}/${target}/${images_dir} ..."
   mkdir -p ${dist}/${target}/${images_dir}
-  find -E ${src}/${target}/${images_dir} -type f -iregex ".*.(png|jpg|gif|svg)" -exec cp {} ${dist}/${target}/${images_dir}/ \;
+  find ${src}/${target}/${images_dir} -type f -iname "*.png" -exec cp {} ${dist}/${target}/${images_dir}/ \;
+  # TODO: other image ext
 done
 
 echo "Add CNAME ..."
