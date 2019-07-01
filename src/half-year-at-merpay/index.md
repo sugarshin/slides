@@ -13,31 +13,31 @@ image: https://slides.sugarshin.net/half-year-at-merpay/index.png
 
 ---
 
-<img src="/half-year-at-merpay/images/g.png" style="display: block; margin: 0 auto;">
+<img src="images/g.png" style="display: block; margin: 0 auto;">
 
 ---
 
-<img src="/half-year-at-merpay/images/h.png" style="display: block; margin: 0 auto;">
+<img src="images/h.png" style="display: block; margin: 0 auto;">
 
 ---
 
-<img src="/half-year-at-merpay/images/b.png" style="display: block; margin: 0 auto;">
+<img src="images/b.png" style="display: block; margin: 0 auto;">
 
 ---
 
-<img src="/half-year-at-merpay/images/i0.png" style="display: block; margin: 0 auto;">
+<img src="images/i0.png" style="display: block; margin: 0 auto;">
 
 ---
 
-<img src="/half-year-at-merpay/images/i1.png" style="display: block; margin: 0 auto;">
+<img src="images/i1.png" style="display: block; margin: 0 auto;">
 
 ---
 
-<img src="/half-year-at-merpay/images/i2.png" style="display: block; margin: 0 auto;">
+<img src="images/i2.png" style="display: block; margin: 0 auto;">
 
 ---
 
-<!-- <img src="/half-year-at-merpay/images/i3.png" style="display: block; margin: 0 auto;">
+<!-- <img src="images/i3.png" style="display: block; margin: 0 auto;">
 
 ---
 
@@ -49,7 +49,7 @@ image: https://slides.sugarshin.net/half-year-at-merpay/index.png
 
 ---
 
-<img src="/half-year-at-merpay/images/m.png" style="display: block; margin: 0 auto;">
+<img src="images/m.png" style="display: block; margin: 0 auto;">
 
 ---
 
@@ -68,11 +68,11 @@ image: https://slides.sugarshin.net/half-year-at-merpay/index.png
 
 ---
 
-<img src="/half-year-at-merpay/images/c.png" style="display: block; margin: 0 auto;">
+<img src="images/c.png" style="display: block; margin: 0 auto;">
 
 ---
 
-<img src="/half-year-at-merpay/images/n.png" style="display: block; margin: 0 auto; width: 30%; height: auto;">
+<img src="images/n.png" style="display: block; margin: 0 auto; width: 30%; height: auto;">
 
 ---
 
@@ -87,7 +87,7 @@ image: https://slides.sugarshin.net/half-year-at-merpay/index.png
 
 ---
 
-<img src="/half-year-at-merpay/images/d.png" style="display: block; margin: 0 auto;">
+<img src="images/d.png" style="display: block; margin: 0 auto;">
 
 ---
 

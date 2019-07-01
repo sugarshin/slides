@@ -45,7 +45,7 @@ TBD
 
 ---
 
-<img src="/${pathname}/images/sample.png">
+<img src="images/sample.png">
 EOF
 
 echo -e "\n[INFO] Completed successfully\n"
