@@ -114,4 +114,41 @@ export function staticAssetsAccessControl(this: any, moduleOptions: ModuleOption
 
 ---
 
+<img src="images/co.png" style="display: block; margin: 0 auto; width: 25%;">
+
+---
+
+<img src="images/re.png" style="display: block; margin: 0 auto;">
+
+---
+
+- `$ npm ci --production`
+- Ignore unnecessary files with `.dockerignore`
+- **Execute test and build in parallel**
+
+---
+
+```yaml
+jobs:
+  upload_sourcemap:
+    executor: sentry_cli
+    steps:
+      - checkout
+      - attach_workspace:
+          at: *workspace_root
+      - run:
+          shell: /bin/bash -euo pipefail
+          command: |
+            RELEASE_NAME=$(cat ./package.json | jq -r .version)
+            URL_PREFIX=https://static-coupon.merpay.com/nuxt
+            sentry-cli --auth-token=${SENTRY_AUTH_TOKEN} releases files ${RELEASE_NAME} \
+              upload-sourcemaps .nuxt/dist/client --no-rewrite --url-prefix=${URL_PREFIX}
+```
+
+---
+
+<img src="images/se.png" style="display: block; margin: 0 auto;">
+
+---
+
 <p style="text-align: center; font-size: 4em;">🙏</p>
