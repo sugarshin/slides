@@ -92,8 +92,6 @@ image: https://slides.sugarshin.net/half-year-at-merpay/index.png
 ---
 
 ```ts
-import { Context } from '@nuxt/vue-app';
-
 export function denyProduction({ env, error }: Context) {
   if (env.APP_ENV === 'production') {
     return error({ statusCode: 404 });
