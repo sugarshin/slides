@@ -179,6 +179,39 @@ article#presentation > svg[data-marpit-svg] > foreignObject[data-marpit-advanced
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21">
+<img src="images/co.png" style="display: block; margin: 0 auto; width: 25%;" />
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22">
+<img src="images/re.png" style="display: block; margin: 0 auto;" />
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23">
+<ul>
+<li><code>$ npm ci --production</code></li>
+<li>Ignore unnecessary files with <code>.dockerignore</code></li>
+<li><strong>Execute test and build in parallel</strong></li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24">
+<pre><code class="language-yaml"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-attr">jobs:</span>
+<span class="hljs-attr">  upload_sourcemap:</span>
+<span class="hljs-attr">    executor:</span> <span class="hljs-string">sentry_cli</span>
+<span class="hljs-attr">    steps:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">checkout</span>
+<span class="hljs-attr">      - attach_workspace:</span>
+<span class="hljs-attr">          at:</span> <span class="hljs-meta">*workspace_root</span>
+<span class="hljs-attr">      - run:</span>
+<span class="hljs-attr">          shell:</span> <span class="hljs-string">/bin/bash</span> <span class="hljs-bullet">-euo</span> <span class="hljs-string">pipefail</span>
+<span class="hljs-attr">          command:</span> <span class="hljs-string">|
+            RELEASE_NAME=$(cat ./package.json | jq -r .version)
+            URL_PREFIX=https://static-coupon.merpay.com/nuxt
+            sentry-cli --auth-token=${SENTRY_AUTH_TOKEN} releases files ${RELEASE_NAME} \
+              upload-sourcemaps .nuxt/dist/client --no-rewrite --url-prefix=${URL_PREFIX}
+</span></span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25">
+<img src="images/se.png" style="display: block; margin: 0 auto;" />
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26">
 <p style="text-align: center; font-size: 4em;">🙏</p>
 </section>
 </foreignObject></svg></article><script>!function(){"use strict";const t=()=>"Apple Computer, Inc."===navigator.vendor?[e]:[];function e(t){Array.from(document.getElementsByTagName("svg"),e=>{if(e.hasAttribute("data-marpit-svg")){const{clientHeight:r,clientWidth:a}=e;e.style.transform||(e.style.transform="translateZ(0)");const i=t||e.currentScale||1,n=e.viewBox.baseVal.width/i,s=e.viewBox.baseVal.height/i,o=Math.min(r/s,a/n);Array.from(e.querySelectorAll(":scope > foreignObject"),t=>{const e=t.x.baseVal.value,i=t.y.baseVal.value;Array.from(t.querySelectorAll(":scope > section"),t=>{t.style.transformOrigin||(t.style.transformOrigin="0 0");const l=(a-o*n)/2-e,c=(r-o*s)/2-i;t.style.transform=`translate3d(${l}px,${c}px,0) scale(${o}) translate(${e}px,${i}px)`})})}})}const r="data-marp-fitting",a="data-marp-fitting-code",i="data-marp-fitting-math",n=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};!function(e=!0){const s=()=>{for(const e of t())e();Array.from(document.querySelectorAll(`svg[${r}="svg"]`),t=>{const e=t.firstChild,r=e.firstChild,{scrollWidth:s,scrollHeight:o}=r;let l,c=1;if(t.hasAttribute(a)&&(l=t.parentElement.parentElement),t.hasAttribute(i)&&(l=t.parentElement),l){const t=getComputedStyle(l),e=Math.ceil(l.clientWidth-parseFloat(t.paddingLeft)-parseFloat(t.paddingRight));e&&(c=e)}const m=Math.max(s,c),p=Math.max(o,1),g=`0 0 ${m} ${p}`;n(e,"width",`${m}`),n(e,"height",`${p}`),n(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),n(t,"viewBox",g)&&t.classList.toggle("__reflow__")}),e&&window.requestAnimationFrame(s)};s()}()}();
