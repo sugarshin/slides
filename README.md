@@ -12,6 +12,12 @@ https://slides.sugarshin.net
 $ npm run new "Slide Title" slide-pathname
 ```
 
+## Preview a slide
+
+```shell
+$ npm run dev src/slide-pathname
+```
+
 ## Build
 
 ```shell
