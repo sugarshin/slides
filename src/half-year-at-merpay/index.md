@@ -37,13 +37,9 @@ image: https://slides.sugarshin.net/half-year-at-merpay/index.png
 
 ---
 
-<!-- <img src="images/i3.png" style="display: block; margin: 0 auto;">
-
----
-
 <p style="text-align: center; font-size: 2em;"><a href="https://ins0.jp/" target="_blank">ins0.jp</a></p>
 
---- -->
+---
 
 ## Merpay Frontend Team
 
@@ -92,8 +88,6 @@ image: https://slides.sugarshin.net/half-year-at-merpay/index.png
 ---
 
 ```ts
-import { Context } from '@nuxt/vue-app';
-
 export function denyProduction({ env, error }: Context) {
   if (env.APP_ENV === 'production') {
     return error({ statusCode: 404 });
