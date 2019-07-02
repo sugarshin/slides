@@ -68,7 +68,7 @@ image: https://slides.sugarshin.net/half-year-at-merpay/index.png
 
 ---
 
-<img src="images/n.png" style="display: block; margin: 0 auto; width: 30%; height: auto;">
+<img src="images/nt.png" style="display: block; margin: 0 auto;">
 
 ---
 
