@@ -10,7 +10,7 @@
     "clean:dist": "if [ -d dist ]; then rm -rf dist; fi",
     "clean:pdf": "if [ -d pdf ]; then rm -rf pdf; fi",
     "prebuild": "npm run clean:dist && npm run clean:pdf",
-    "build": "/bin/bash scripts/build.sh"
+    "build": "scripts/build.sh"
   },
   "repository": {
     "type": "git",
