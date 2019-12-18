@@ -40,7 +40,7 @@ jobs:
           path: pdf
           destination: pdf
   slack_notify:
-    machine: true
+    executor: slack/alpine
     steps:
       - slack/notify:
           color: '#42e2f4'
