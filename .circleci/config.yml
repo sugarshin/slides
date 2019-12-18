@@ -15,7 +15,7 @@ executors:
   nodejs_browsers:
     <<: *defaults
     docker:
-      - image: sugarshin/circleci-node-browsers-fonts:12.4.0
+      - image: sugarshin/circleci-node-browsers-fonts:12.13.1
   buildpack_deps:
     <<: *defaults
     docker:
