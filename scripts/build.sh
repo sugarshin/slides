@@ -3,6 +3,7 @@
 set -eu
 
 readonly marp=node_modules/.bin/marp
+readonly md_it=node_modules/.bin/markdown-it
 readonly src=src
 readonly dist=dist
 readonly pdf_dist=pdf
@@ -11,8 +12,10 @@ readonly publishes=$(find $src -type f -name $publishfile)
 readonly images_dir=images
 readonly cname=slides.sugarshin.net
 
+echo -e 'Prepare directories...\n'
 mkdir -p ${dist} ${pdf_dist}
 
+echo -e 'Build slides...\n'
 for p in ${publishes[@]}; do
   target=$(basename $(dirname "$p"))
   mkdir -p ${dist}/${target}
@@ -28,9 +31,38 @@ for p in ${publishes[@]}; do
   # TODO: other image ext
 done
 
-echo "Add CNAME ..."
+echo -e 'Build index...\n'
+i=0
+for p in ${publishes[@]}; do
+  if [ ! $i = 0 ]; then
+    slides+='\n'
+  fi
+  name=$(basename $(dirname "${p}"))
+  slides+="- [${name}](/${name})"
+  i=$((++i))
+done
+
+content=$(echo -e -n $slides | ${md_it})
+
+cat << EOF > ${dist}/index.html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>@sugarshin's slides | slides.sugarshin.net</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container mt-5">
+      ${content}
+    </div>
+  </body>
+</html>
+EOF
+
+echo -e "Add CNAME...\n"
 echo $cname > ${dist}/CNAME
-echo "Add .nojekyll ..."
+echo -e "Add .nojekyll...\n"
 touch ${dist}/.nojekyll
 
 echo "Completed Build Successfully."
