@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+if (!process.argv[2]) {
+  console.error('ERROR: argument must be required');
+  process.exit(1);
+}
+
+require('markdown-it')()
+  .use(require('markdown-it-front-matter'), fm => process.stdout.write(fm))
+  .render(process.argv[2]);

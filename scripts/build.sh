@@ -4,6 +4,7 @@ set -eu
 
 readonly marp=node_modules/.bin/marp
 readonly md_it=node_modules/.bin/markdown-it
+readonly extract_fm=bin/extract-front-matter
 readonly src=src
 readonly dist=dist
 readonly pdf_dist=pdf
@@ -41,7 +42,11 @@ for p in ${publishes[@]}; do
     md_string+='\n'
   fi
   name=$(basename $(dirname "${p}"))
-  md_string+="- [${name}](/${name})"
+  file=${src}/${name}/index.md
+  md=$(cat ${file})
+  fm=$(${extract_fm} "${md}")
+  slide_title=$(echo "${fm}" | yq r - title)
+  md_string+="- [${slide_title}](/${name})"
   i=$((++i))
 done
 
