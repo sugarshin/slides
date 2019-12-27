@@ -28,6 +28,9 @@ jobs:
       - checkout
       - npm/install:
           production: true
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
       - run: npm run build
       - persist_to_workspace:
           root: *workspace_root

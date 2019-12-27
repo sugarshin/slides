@@ -4,13 +4,16 @@ set -eu
 
 readonly marp=node_modules/.bin/marp
 readonly md_it=node_modules/.bin/markdown-it
+readonly js_yaml=node_modules/.bin/js-yaml
+readonly extract_fm=bin/extract-front-matter
 readonly src=src
 readonly dist=dist
 readonly pdf_dist=pdf
 readonly publishfile=publish
 readonly publishes=$(find $src -type f -name $publishfile)
 readonly images_dir=images
-readonly cname=slides.sugarshin.net
+readonly origin=slides.sugarshin.net
+readonly title="@sugarshin's slides"
 
 echo -e 'Prepare directories...\n'
 mkdir -p ${dist} ${pdf_dist}
@@ -32,24 +35,30 @@ for p in ${publishes[@]}; do
 done
 
 echo -e 'Build index...\n'
+
+md_string="# ${title}\n\n"
 i=0
 for p in ${publishes[@]}; do
   if [ ! $i = 0 ]; then
-    slides+='\n'
+    md_string+='\n'
   fi
   name=$(basename $(dirname "${p}"))
-  slides+="- [${name}](/${name})"
+  file=${src}/${name}/index.md
+  md=$(cat ${file})
+  fm=$(${extract_fm} "${md}")
+  slide_title=$(echo "${fm}" | ${js_yaml} | jq -r .title)
+  md_string+="- [${slide_title}](/${name})"
   i=$((++i))
 done
 
-content=$(echo -e -n $slides | ${md_it})
+content=$(echo -e -n $md_string | ${md_it})
 
 cat << EOF > ${dist}/index.html
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>@sugarshin's slides | slides.sugarshin.net</title>
+    <title>${title} | ${origin}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
@@ -62,7 +71,7 @@ cat << EOF > ${dist}/index.html
 EOF
 
 echo -e "Add CNAME...\n"
-echo $cname > ${dist}/CNAME
+echo $origin > ${dist}/CNAME
 echo -e "Add .nojekyll...\n"
 touch ${dist}/.nojekyll
 
