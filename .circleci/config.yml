@@ -7,7 +7,7 @@ references:
     working_directory: *workspace_root
 
 orbs:
-  slack: circleci/slack@3.4.1
+  slack: circleci/slack@3.4.2
   npm: sugarshin/npm@0.1.5
   gh-pages: sugarshin/gh-pages@0.0.6
 
@@ -15,11 +15,11 @@ executors:
   nodejs_browsers:
     <<: *defaults
     docker:
-      - image: sugarshin/circleci-node-browsers-fonts:12.13.2
+      - image: sugarshin/circleci-node-browsers-fonts:13.0.0-node12.17.0
   buildpack_deps:
     <<: *defaults
     docker:
-      - image: circleci/buildpack-deps:latest
+      - image: circleci/buildpack-deps:stable
 
 jobs:
   build:
@@ -28,10 +28,11 @@ jobs:
       - checkout
       - npm/install:
           production: true
-      - run: |
-          sudo apt-get update
-          sudo apt-get install -y jq
-      - run: npm run build
+      - run: sudo apt-get update && sudo apt-get install -y jq
+      - run:
+          command: npm run build
+          environment:
+            NODE_ENV: production
       - persist_to_workspace:
           root: *workspace_root
           paths:
