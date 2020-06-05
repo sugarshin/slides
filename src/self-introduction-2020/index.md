@@ -28,7 +28,7 @@ Shingo Sato | @sugarshin
 ---
 
 <div style="display: flex; align-items: center; justify-content: center; max-height: 100%;">
-  <img src="images/s05.png">
+  <img src="images/s05.png" style="width: 40%;">
 </div>
 
 ---
@@ -51,7 +51,7 @@ Shingo Sato | @sugarshin
 
 ---
 
-<p style="text-align: center; font-size: 2em;">
+<p style="text-align: center; font-size: 1em;">
   Campaign LP /
   Coupon WebView
 </p>
@@ -114,7 +114,7 @@ Shingo Sato | @sugarshin
 ---
 
 <div style="display: flex; align-items: center; justify-content: center; max-height: 100%;">
-  <img src="images/tsu.png" style="max-height: 100%;">
+  <img src="images/tsu.png" style="max-height: 100%; width: 50%;">
 </div>
 
 ---
