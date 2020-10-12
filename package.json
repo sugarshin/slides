@@ -26,6 +26,6 @@
     "@marp-team/marp-cli": "0.17.4",
     "js-yaml": "3.14.0",
     "markdown-it": "11.0.1",
-    "markdown-it-front-matter": "0.2.1"
+    "markdown-it-front-matter": "0.2.2"
   }
 }
