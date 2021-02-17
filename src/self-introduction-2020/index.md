@@ -1,11 +1,11 @@
 ---
-title: Self Introduction - @sugarshin's slide | slides.sugarshin.net
-description: Self Introduction - @sugarshin's slide | slides.sugarshin.net
+title: Self Introduction 2020 - @sugarshin's slide | slides.sugarshin.net
+description: Self Introduction 2020 - @sugarshin's slide | slides.sugarshin.net
 url: https://slides.sugarshin.net/self-introduction-2020
 image: https://slides.sugarshin.net/self-introduction-2020/index.png
 ---
 
-# Self Introduction
+# Self Introduction 2020
 
 Shingo Sato | @sugarshin
 
