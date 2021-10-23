@@ -24,7 +24,7 @@
   "homepage": "https://github.com/sugarshin/slides#readme",
   "dependencies": {
     "@marp-team/marp-cli": "1.4.1",
-    "js-yaml": "3.14.1",
+    "js-yaml": "4.1.0",
     "markdown-it": "11.0.1",
     "markdown-it-front-matter": "0.2.3"
   }
