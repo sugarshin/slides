@@ -1,34 +1,30 @@
 version: 2.1
 
-references:
-  workspace_root: &workspace_root
-    ~/repo
-  defaults: &defaults
-    working_directory: *workspace_root
-
 orbs:
   slack: circleci/slack@3.4.2
-  npm: sugarshin/npm@0.1.5
+  npm: sugarshin/npm@0.1.7
+  nodejs: circleci/node@4.7.0
   gh-pages: sugarshin/gh-pages@0.0.6
+  jq: circleci/jq@2.2.0
 
 executors:
   nodejs_browsers:
-    <<: *defaults
+    working_directory: &workspace_root ~/repo
     docker:
       - image: sugarshin/circleci-node-browsers-fonts:13.0.0-node12.17.0
-  buildpack_deps:
-    <<: *defaults
+  base:
+    working_directory: *workspace_root
     docker:
-      - image: circleci/buildpack-deps:stable
+      - image: cimg/base:stable-20.04
 
 jobs:
   build:
     executor: nodejs_browsers
     steps:
       - checkout
-      - npm/install:
-          production: true
-      - run: sudo apt-get update && sudo apt-get install -y jq
+      - nodejs/install-packages:
+          override-ci-command: npm ci --production
+      - jq/install
       - run:
           command: npm run build
           environment:
@@ -60,7 +56,7 @@ workflows:
               ignore: gh-pages
       - gh-pages/deploy:
           name: deploy
-          executor: buildpack_deps
+          executor: base
           attach-workspace: true
           workspace-root: *workspace_root
           git-user: CircleCI
