@@ -17,13 +17,13 @@
     "url": "git+https://github.com/sugarshin/slides.git"
   },
   "author": "sugarshin",
-  "license": "MIT",
+  "license": "SEE LICENSE IN README.md",
   "bugs": {
     "url": "https://github.com/sugarshin/slides/issues"
   },
   "homepage": "https://github.com/sugarshin/slides#readme",
   "dependencies": {
-    "@marp-team/marp-cli": "0.17.4",
+    "@marp-team/marp-cli": "1.4.1",
     "js-yaml": "3.14.0",
     "markdown-it": "11.0.1",
     "markdown-it-front-matter": "0.2.3"
