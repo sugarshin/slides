@@ -55,7 +55,7 @@ workflows:
           workspace-root: *workspace_root
           git-user: CircleCI
           git-email: s+circleci@sugarshin.net
-          ssh-fingerprints: a7:49:7e:a0:5e:9d:5a:e5:a9:da:5d:5e:a3:58:87:8f
+          ssh-fingerprints: 79:93:e1:03:46:18:7b:6d:17:e3:79:04:64:99:b6:95
           requires:
             - build
           filters:
