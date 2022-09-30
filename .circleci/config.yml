@@ -1,34 +1,30 @@
 version: 2.1
 
 orbs:
-  slack: circleci/slack@3.4.2
-  npm: sugarshin/npm@0.1.7
-  nodejs: circleci/node@4.7.0
-  gh-pages: sugarshin/gh-pages@0.0.6
+  nodejs: circleci/node@5.0.3
+  gh-pages: sugarshin/gh-pages@1.0.1
   jq: circleci/jq@2.2.0
 
 executors:
   nodejs_browsers:
-    working_directory: &workspace_root ~/repo
+    working_directory: &workspace_root ~/project
     docker:
       - image: sugarshin/circleci-node-browsers-fonts:13.0.0-node12.17.0
   base:
     working_directory: *workspace_root
     docker:
-      - image: cimg/base:stable-20.04
+      - image: cimg/base:current-22.04
 
 jobs:
   build:
     executor: nodejs_browsers
     steps:
       - checkout
-      - nodejs/install-packages:
-          override-ci-command: npm ci --production
       - jq/install
+      - nodejs/install-packages
       - run:
+          name: Build
           command: npm run build
-          environment:
-            NODE_ENV: production
       - persist_to_workspace:
           root: *workspace_root
           paths:
@@ -39,16 +35,9 @@ jobs:
       - store_artifacts:
           path: pdf
           destination: pdf
-  slack_notify:
-    executor: slack/alpine
-    steps:
-      - slack/notify:
-          color: '#42e2f4'
-          message: "slides.sugarshin.net has been updated! <https://slides.sugarshin.net>"
-          webhook: ${SLACK_WEBHOOK_URL}
 
 workflows:
-  build_deploy:
+  main:
     jobs:
       - build:
           filters:
@@ -67,6 +56,3 @@ workflows:
           filters:
             branches:
               only: master
-      - slack_notify:
-          requires:
-            - deploy
