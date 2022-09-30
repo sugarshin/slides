@@ -3,7 +3,6 @@ version: 2.1
 orbs:
   nodejs: circleci/node@5.0.3
   gh-pages: sugarshin/gh-pages@1.0.1
-  jq: circleci/jq@2.2.0
   shellcheck: circleci/shellcheck@3.1.1
 
 executors:
@@ -21,7 +20,6 @@ jobs:
     executor: nodejs_browsers
     steps:
       - checkout
-      - jq/install
       - nodejs/install-packages
       - run:
           name: Build
