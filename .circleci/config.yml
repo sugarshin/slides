@@ -52,7 +52,7 @@ workflows:
           pre-steps:
             - run: |
                 mkdir -p ~/.ssh      
-                sh-keyscan github.com >> ~/.ssh/known_hosts
+                ssh-keyscan github.com >> ~/.ssh/known_hosts
           name: deploy
           executor: base
           attach-workspace: true
