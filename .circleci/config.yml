@@ -51,8 +51,8 @@ workflows:
       - gh-pages/deploy:
           pre-steps:
             - run: |
-              mkdir -p ~/.ssh      
-              ssh-keyscan github.com >> ~/.ssh/known_hosts
+                mkdir -p ~/.ssh      
+                sh-keyscan github.com >> ~/.ssh/known_hosts
           name: deploy
           executor: base
           attach-workspace: true
