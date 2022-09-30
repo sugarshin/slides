@@ -9,7 +9,8 @@ readonly src=src
 readonly dist=dist
 readonly pdf_dist=pdf
 readonly publishfile=publish
-readonly publishes=$(find $src -type f -name $publishfile)
+publishes=$(find $src -type f -name $publishfile)
+readonly publishes
 readonly images_dir=images
 readonly origin=slides.sugarshin.net
 readonly title="@sugarshin's slides"
@@ -18,18 +19,18 @@ echo -e 'Prepare directories...\n'
 mkdir -p ${dist} ${pdf_dist}
 
 echo -e 'Build slides...\n'
-for p in ${publishes[@]}; do
-  target=$(basename $(dirname "$p"))
-  mkdir -p ${dist}/${target}
+for p in ${publishes}; do
+  target=$(basename "$(dirname "${p}")")
+  mkdir -p ${dist}/"${target}"
   file=${src}/${target}/index.md
   echo "Build $file ..."
-  ${marp} $file --html -o ${dist}/${target}/index.html
-  ${marp} $file --html --pdf --allow-local-files -o ${pdf_dist}/${target}.pdf
-  ${marp} $file --image png -o ${dist}/${target}/index.png
+  ${marp} "$file" --html -o ${dist}/"${target}"/index.html
+  ${marp} "$file" --html --pdf --allow-local-files -o ${pdf_dist}/"${target}".pdf
+  ${marp} "$file" --image png -o ${dist}/"${target}"/index.png
 
   echo "Copy ${src}/${target}/${images_dir} ..."
-  mkdir -p ${dist}/${target}/${images_dir}
-  find ${src}/${target}/${images_dir} -type f -iname "*.png" -exec cp {} ${dist}/${target}/${images_dir}/ \;
+  mkdir -p ${dist}/"${target}"/${images_dir}
+  find ${src}/"${target}"/${images_dir} -type f -iname "*.png" -exec cp {} ${dist}/"${target}"/${images_dir}/ \;
   # TODO: other image ext
 done
 
@@ -37,19 +38,19 @@ echo -e 'Build index...\n'
 
 md_string="# ${title}\n\n"
 i=0
-for p in ${publishes[@]}; do
+for p in ${publishes}; do
   if [ ! $i = 0 ]; then
     md_string+='\n'
   fi
-  name=$(basename $(dirname "${p}"))
+  name=$(basename "$(dirname "${p}")")
   file=${src}/${name}/index.md
-  md=$(cat ${file})
+  md=$(cat "${file}")
   slide_title=$(${frontmatter} "${md}" | jq -r .title)
   md_string+="- [${slide_title}](/${name})"
   i=$((++i))
 done
 
-content=$(echo -e -n $md_string | ${md_it})
+content=$(echo -e -n "$md_string" | ${md_it})
 
 cat << EOF > ${dist}/index.html
 <!DOCTYPE html>
