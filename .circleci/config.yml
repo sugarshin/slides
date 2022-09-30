@@ -14,7 +14,7 @@ executors:
   base:
     working_directory: *workspace_root
     docker:
-      - image: cimg/base:current-22.04
+      - image: cimg/base:current-20.04
 
 jobs:
   build:
@@ -41,7 +41,7 @@ workflows:
   main:
     jobs:
       - shellcheck/check:
-          image-tag: current-22.04
+          image-tag: current-20.04
           filters:
             branches:
               ignore: gh-pages
