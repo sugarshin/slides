@@ -14,20 +14,20 @@ readonly src=src
 readonly dir=${src}/${pathname}
 readonly images_dir=${dir}/images
 
-if [ -d ${dir} ]; then
+if [ -d "${dir}" ]; then
   echo -e "[ERROR] ./${dir} already exsits.\n"
   exit 1
 fi
 
-mkdir -p ${images_dir}
+mkdir -p "${images_dir}"
 
 images_gitkeep=${images_dir}/.gitkeep
-echo ${images_gitkeep}
-touch ${images_gitkeep}
+echo "${images_gitkeep}"
+touch "${images_gitkeep}"
 
 indexmd=${dir}/index.md
-echo ${indexmd}
-cat << EOF >> ${indexmd}
+echo "${indexmd}"
+cat << EOF >> "${indexmd}"
 ---
 title: ${title} - @sugarshin's slide | slides.sugarshin.net
 description: ${title} - @sugarshin's slide | slides.sugarshin.net
