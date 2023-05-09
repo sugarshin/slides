@@ -23,7 +23,7 @@
   "homepage": "https://github.com/sugarshin/slides#readme",
   "dependencies": {
     "@marp-team/marp-cli": "1.4.1",
-    "markdown-it": "11.0.1",
+    "markdown-it": "12.3.2",
     "yaml-front-matter": "4.1.1"
   }
 }
