@@ -6,8 +6,8 @@
   "scripts": {
     "new": "./scripts/new.sh",
     "dev": "marp --html -s",
-    "clean:dist": "if [ -d dist ]; then rm -rf dist; fi",
-    "clean:pdf": "if [ -d pdf ]; then rm -rf pdf; fi",
+    "clean:dist": "rm -rf dist",
+    "clean:pdf": "rm -rf pdf",
     "prebuild": "npm run clean:dist && npm run clean:pdf",
     "build": "./scripts/build.sh"
   },
@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/sugarshin/slides#readme",
   "dependencies": {
-    "@marp-team/marp-cli": "1.4.1",
-    "markdown-it": "11.0.1",
+    "@marp-team/marp-cli": "2.5.0",
+    "markdown-it": "13.0.1",
     "yaml-front-matter": "4.1.1"
   }
 }

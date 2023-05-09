@@ -4,12 +4,13 @@ orbs:
   nodejs: circleci/node@5.0.3
   gh-pages: sugarshin/gh-pages@1.0.1
   shellcheck: circleci/shellcheck@3.1.1
+  browser-tools: circleci/browser-tools@1.4.1
 
 executors:
   nodejs_browsers:
     working_directory: &workspace_root ~/project
     docker:
-      - image: sugarshin/circleci-node-browsers-fonts:13.0.0-node12.17.0
+      - image: cimg/node:18.16.0-browsers
   base:
     working_directory: *workspace_root
     docker:
@@ -19,13 +20,26 @@ jobs:
   build:
     executor: nodejs_browsers
     steps:
+      - run:
+          name: Install dependencies and update locale
+          command: |
+            sudo apt update
+            sudo apt -y install \
+              language-pack-ja \
+              fonts-noto \
+              fonts-noto-color-emoji \
+              fonts-liberation \
+              fonts-dejavu
+            sudo locale-gen ja_JP.UTF-8
+            sudo update-locale LANG=ja_JP.UTF-8
+      - browser-tools/install-chrome
       - checkout
       - nodejs/install-packages
       - run:
           name: Build
           command: npm run build
       - persist_to_workspace:
-          root: *workspace_root
+          root: .
           paths:
             - dist
       - store_artifacts:
