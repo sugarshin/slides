@@ -49,6 +49,12 @@ for p in ${publishes}; do
   i=$((++i))
 done
 
+# TODO:
+md_string+='\n'
+md_string+='- [LIFF JS SDK Development Team Introduction](/202110_hiring_event.pdf)'
+md_string+='\n'
+md_string+='- [LIFFプラグインの紹介](/shingosato-connpass-event-220511.pdf)'
+
 content=$(echo -e -n "$md_string" | ${md_it})
 
 cat << EOF > ${dist}/index.html
@@ -68,6 +74,8 @@ cat << EOF > ${dist}/index.html
 </html>
 EOF
 
+echo -e "[INFO] Copy PDF slides...\n"
+find resources -type f -name '*.pdf' -exec cp "{}" "${dist}" \;
 echo -e "[INFO] Add CNAME...\n"
 echo $origin > ${dist}/CNAME
 echo -e "[INFO] Add .nojekyll...\n"
