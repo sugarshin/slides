@@ -80,5 +80,7 @@ echo -e "[INFO] Add CNAME...\n"
 echo $origin > ${dist}/CNAME
 echo -e "[INFO] Add .nojekyll...\n"
 touch ${dist}/.nojekyll
+echo -e "[INFO] Copy static...\n"
+cp -nR static/. "${dist}"
 
 echo "[INFO] Completed Build Successfully."
