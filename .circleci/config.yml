@@ -10,7 +10,7 @@ executors:
   nodejs_browsers:
     working_directory: &workspace_root ~/project
     docker:
-      - image: cimg/node:18.16.0-browsers
+      - image: cimg/node:18.16.1-browsers
   base:
     working_directory: *workspace_root
     docker:
